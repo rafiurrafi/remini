@@ -1,5 +1,11 @@
+import BudgetApp from "./budget-tracking/budget-app";
+
 const App = () => {
-  return <div>In the name of Allah, Let's start</div>;
+  return (
+    <div>
+      <BudgetApp />
+    </div>
+  );
 };
 
 export default App;
