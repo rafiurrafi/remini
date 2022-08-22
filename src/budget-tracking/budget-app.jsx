@@ -1,15 +1,17 @@
 import Title from "./components/title/title.component";
-import TransactionList from "./components/transation-list/transation-list.component";
-import TransactionProvider from "./context/transactions.context";
+import TransactionForm from "./components/tx-form/tx-form.component";
+import TxList from "./components/tx-list/tx-list.component";
+import TxProvider from "./context/transactions.context";
 
 const BudgetApp = () => {
   return (
-    <TransactionProvider>
+    <TxProvider>
       <div className="budget-app">
         <Title />
-        <TransactionList />
+        <TxList />
+        <TransactionForm />
       </div>
-    </TransactionProvider>
+    </TxProvider>
   );
 };
 

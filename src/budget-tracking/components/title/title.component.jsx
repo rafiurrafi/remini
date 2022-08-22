@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { TransactionContext } from "../../context/transactions.context";
+import { TxContext } from "../../context/transactions.context";
 
 const Title = () => {
-  const { totalAmount } = useContext(TransactionContext);
+  const { totalAmount } = useContext(TxContext);
   return (
     <div className="hudget-title">
       <h1>{totalAmount}</h1>

@@ -1,37 +1,38 @@
 import { createContext, useEffect, useState } from "react";
-const add = (transactions, transaction) => {
-  return [...transactions, transaction];
+const add = (txs, tx) => {
+  return [txs, tx];
 };
 const initialValue = [
   {
     id: 1,
     time: new Date(),
     title: "Buy cow",
-    amount: 34,
+    amount: "+34",
   },
 ];
-export const TransactionContext = createContext({
+export const TxContext = createContext({
   transactions: [],
 });
-const TransactionProvider = ({ children }) => {
+const TxProvider = ({ children }) => {
   const [transactions, setTransations] = useState(initialValue);
   const [totalAmount, setTotalAmount] = useState(0);
-  const addTransation = (transaction) => {
-    setTransations(add(transaction));
+  const addTransaction = (transaction) => {
+    setTransations(add(transactions, transaction));
   };
   useEffect(() => {
-    const newTotal = transactions.reduce(
-      (total, tx) => (total += tx.amount),
-      0
-    );
+    const newTotal = transactions.reduce((total, tx) => {
+      const sign = tx.amount[0];
+      const amount = +tx.amount.slice(1);
+      if (sign === "+") total += amount;
+      else if (sign === "-") total -= amount;
+      console.log(sign, amount);
+      // total += amount;
+      return total;
+    }, 0);
     setTotalAmount(newTotal);
   }, [transactions]);
-  const value = { transactions, totalAmount, addTransation };
-  return (
-    <TransactionContext.Provider value={value}>
-      {children}
-    </TransactionContext.Provider>
-  );
+  const value = { transactions, totalAmount, addTransaction };
+  return <TxContext.Provider value={value}>{children}</TxContext.Provider>;
 };
 
-export default TransactionProvider;
+export default TxProvider;

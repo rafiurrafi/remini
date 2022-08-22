@@ -1,5 +1,5 @@
-import "./transaction-single.style.scss";
-const TransactionSingle = ({ tx }) => {
+import "./tx-single.style.scss";
+const TxSingle = ({ tx }) => {
   console.log(tx);
   return (
     <div className="transaction-single">
@@ -9,4 +9,4 @@ const TransactionSingle = ({ tx }) => {
   );
 };
 
-export default TransactionSingle;
+export default TxSingle;
