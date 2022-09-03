@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 const add = (txs, tx) => {
-  return [txs, tx];
+  return [...txs, tx];
 };
 const initialValue = [
   {
@@ -22,12 +22,11 @@ const TxProvider = ({ children }) => {
   useEffect(() => {
     const newTotal = transactions.reduce((total, tx) => {
       const sign = tx.amount[0];
-      const amount = +tx.amount.slice(1);
-      if (sign === "+") total += amount;
-      else if (sign === "-") total -= amount;
-      console.log(sign, amount);
-      // total += amount;
-      return total;
+      let amount;
+      if (sign === "+" || sign === "-") amount = +tx.amount.slice(1);
+      else amount = +tx.amount;
+      if (sign === "-") return total - amount;
+      else return total + amount;
     }, 0);
     setTotalAmount(newTotal);
   }, [transactions]);

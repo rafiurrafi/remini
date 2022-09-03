@@ -7,7 +7,6 @@ const defaultFormField = {
 };
 const TransactionForm = () => {
   const { addTransaction } = useContext(TxContext);
-  console.log(addTransaction);
   const [formField, setFormField] = useState(defaultFormField);
   const { title, amount } = formField;
   const handleChange = (e) => {
@@ -21,7 +20,6 @@ const TransactionForm = () => {
       id: Math.random() * 10000,
       time: new Date(),
     };
-    console.log(tx);
     addTransaction(tx);
   };
   return (
