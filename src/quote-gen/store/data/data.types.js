@@ -1,0 +1,4 @@
+export const DATA_ACTION_TYPES = {
+  SET_USER: "SET_USER",
+  TOGGLE_LOADING: "TOGGLE_LOADING",
+};
