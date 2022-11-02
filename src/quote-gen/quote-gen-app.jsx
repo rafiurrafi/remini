@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import UserInfo from "./user-info/user-info.component";
 
 const QuoteGenApp = () => {
   const [user, setUser] = useState(null);
@@ -15,7 +16,7 @@ const QuoteGenApp = () => {
   return (
     <div>
       <h1>Quote gen app</h1>
-      {user ? <h1>User</h1> : <h2>No user found</h2>}
+      {user ? <UserInfo user={user} /> : <h2>No user found</h2>}
     </div>
   );
 };
