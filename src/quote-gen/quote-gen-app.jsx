@@ -8,7 +8,7 @@ const QuoteGenApp = () => {
     generateUser();
   }, []);
   function generateUser() {
-    const randomId = Math.floor(Math.random() * 10);
+    const randomId = Math.floor(Math.random() * 9) + 1;
     fetch("https://jsonplaceholder.typicode.com/users/" + randomId)
       .then((response) => response.json())
       .then((user) => setUser(user));
@@ -17,6 +17,7 @@ const QuoteGenApp = () => {
     <div>
       <h1>Quote gen app</h1>
       {user ? <UserInfo user={user} /> : <h2>No user found</h2>}
+      <button onClick={generateUser}>Get another user</button>
     </div>
   );
 };
