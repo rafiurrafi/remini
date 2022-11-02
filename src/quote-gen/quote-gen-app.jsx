@@ -1,23 +1,45 @@
 import { useEffect } from "react";
+import { useReducer } from "react";
 import { useState } from "react";
 import UserInfo from "./user-info/user-info.component";
 
+function reducer(state, action) {
+  const { type, payload } = action;
+  switch (type) {
+    case "SET_USER":
+      return { ...state, ...payload };
+    case "TOGGLE_LOADING":
+      return { ...state, loading: payload };
+
+    default:
+      throw new Error(`Unhandled action type ${type}`);
+  }
+}
+
+const initialState = {
+  user: null,
+  loading: true,
+  color: "",
+};
+
 const QuoteGenApp = () => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [color, setColor] = useState();
+  const [{ user, loading, color }, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
   useEffect(() => {
     generateUser();
   }, []);
   function generateUser() {
-    setLoading(true);
+    dispatch({ type: "TOGGLE_LOADING", payload: true });
     const randomId = Math.floor(Math.random() * 9) + 1;
     fetch("https://jsonplaceholder.typicode.com/users/" + randomId)
       .then((response) => response.json())
       .then((user) => {
-        setUser(user);
-        setLoading(false);
-        setColor(getRandomColor());
+        dispatch({
+          type: "SET_USER",
+          payload: { user, loading: false, color: getRandomColor() },
+        });
       });
   }
   function getRandomColor() {
