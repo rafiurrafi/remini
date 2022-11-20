@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { StateContext } from "../contexts/state.context";
 import { links } from "../data/dummy";
 
 const Sidebar = () => {
+  const { setActiveMenu } = useContext(StateContext);
   return (
     <div className="sidebar">
       {links.map((item) => (
@@ -10,7 +13,7 @@ const Sidebar = () => {
 
           {item.links.map((link) => (
             <p>
-              <Link to={`/${link.name}`}>
+              <Link to={`/${link.name}`} onClick={() => setActiveMenu(false)}>
                 {link.icon} {link.name.toUpperCase()}
               </Link>
             </p>

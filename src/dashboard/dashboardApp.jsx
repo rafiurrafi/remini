@@ -19,6 +19,7 @@ import Stacked from "./pages/charts/stacked";
 import ColorMapping from "./pages/charts/color-mapping";
 import Sidebar from "./components/sidebar";
 import "./dashboard.scss";
+import Navbar from "./components/navbar";
 function Dashboard() {
   return <h1>Dahs</h1>;
 }
@@ -36,6 +37,7 @@ const DashboardApp = () => {
           </TooltipComponent>
           <div>{activeMenu ? <Sidebar /> : <div>Sidebar 0 </div>}</div>
           <div className="main">
+            <Navbar />
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/ecommerce" element={<Dashboard />} />
