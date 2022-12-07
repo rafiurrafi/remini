@@ -1,19 +1,35 @@
-import { LineChart, Line } from "recharts";
+import { useState } from "react";
+import { useEffect } from "react";
+import { LineChart, Line, Tooltip } from "recharts";
+import MyBarChart from "./barChart";
 const data = [
-  { name: "Page A", uv: 400, pv: 2400, amt: 2460 },
-  { name: "Page B", uv: 500, pv: 2100, amt: 2400 },
-  { name: "Page C", uv: 200, pv: 3400, amt: 2300 },
-  { name: "Page D", uv: 700, pv: 2600, amt: 2400 },
-  { name: "Page E", uv: 100, pv: 1600, amt: 2490 },
-  { name: "Page F", uv: 300, pv: 1900, amt: 1800 },
+  { name: "Page A", uv: 30 },
+  { name: "Page B", uv: 60 },
+  { name: "Page C", uv: 35 },
+  { name: "Page D", uv: 55 },
+  { name: "Page D", uv: 40 },
 ];
 const ChartApp = () => {
+  const [height, setHeight] = useState(400);
+  const [width, setWidth] = useState(400);
+  // useEffect(() => {
+  //   setInterval(() => {
+  //     const random = Math.floor(Math.random() * 200) + 400;
+  //     setHeight(random);
+  //     setWidth(random);
+  //   }, 1000);
+  // }, []);
   return (
     <div>
       <h1>Chart</h1>
-      <LineChart width={400} height={400} data={data}>
+      {/* simple tiny chart  */}
+      {/* <LineChart width={300} height={150} data={data}>
         <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-      </LineChart>
+        <Tooltip />
+      </LineChart> */}
+      <div>
+        <MyBarChart />
+      </div>
     </div>
   );
 };

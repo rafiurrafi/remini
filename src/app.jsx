@@ -6,12 +6,15 @@ import MusicApp from "./music-app/music-app.jsx";
 import PassGenApp from "./pass-gen/pass-gen-app.jsx";
 import QuoteGenApp from "./quote-gen/quote-gen-app";
 import store from "./quote-gen/store/store";
+
+import "./app.scss";
+import QuizApp from "./quiz/quiz-app.jsx";
 const App = () => {
   // Working with api map
   // https://www.youtube.com/playlist?list=PLWnON6N0wn-GBZi4cj_sz9grBtNZec3Tm
   return (
     <div>
-      <ChartApp />
+      <MusicApp />
     </div>
   );
 };
