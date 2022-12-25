@@ -1,25 +1,40 @@
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
-import img1 from "./assets/1.jpeg";
-import img2 from "./assets/3.jpeg";
-import img3 from "./assets/2.jpeg";
+import { useState } from "react";
+import { productService, toppings } from "./utils";
 const FilterApp = () => {
+  const [checkedState, setCheckedState] = useState([100, 200]);
+  console.log(checkedState);
   return (
     <div>
-      <Carousel swipeable={true}>
+      <div>
         <div>
-          <img src={img1} />
-          <p className="legend">Legend 1</p>
+          <input
+            type="checkbox"
+            id="100"
+            name="hundred"
+            value="100"
+            checked={false}
+          />{" "}
+          100
         </div>
         <div>
-          <img src={img2} />
-          <p className="legend">Legend 2</p>
+          <input type="checkbox" /> 200
         </div>
         <div>
-          <img src={img3} />
-          <p className="legend">Legend 3</p>
+          <input type="checkbox" /> 300
         </div>
-      </Carousel>
+        <div>
+          <input type="checkbox" /> 400
+        </div>
+      </div>
+      <div>
+        <h1>Products</h1>
+        {productService.map((product) => (
+          <div key={product.key}>
+            <h4>{product.title}</h4>
+            <p>{product.price}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
